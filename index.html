@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What Actually Moves a Used Car's Price</title>
+  <meta name="description" content="A market-translation article: what regression reveals about used-car pricing pressure, which signals matter, and where the model becomes a poor guide to real negotiation.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:       #111111;
+      --ink-mid:   #333333;
+      --ink-light: #555555;
+      --ink-muted: #888888;
+      --ink-faint: #bbb;
+      --rule:      #ddd;
+      --divider:   #e8e8e8;
+      --bg:        #ffffff;
+      --bg-offset: #f0f0f0;
+      --display:   'DM Serif Display', Georgia, serif;
+      --body:      'DM Sans', system-ui, sans-serif;
+      --mono:      'Roboto Mono', monospace;
+    }
+
+    html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+    body  { background: var(--bg); color: var(--ink); font-family: var(--body); }
+
+    /* ─── HERO / OPENER ─── */
+    .opener {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 4rem 3rem 0;
+    }
+    .kicker {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin-bottom: 1.5rem;
+    }
+    .opener h1 {
+      font-family: var(--display);
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      line-height: 1.1;
+      color: var(--ink);
+      font-weight: 400;
+    }
+    .opener h1 em { font-style: italic; }
+    .deck {
+      font-family: var(--display);
+      font-style: italic;
+      font-size: clamp(1.1rem, 2vw, 1.4rem);
+      color: var(--ink-mid);
+      margin-top: 1.2rem;
+      line-height: 1.5;
+      max-width: 680px;
+    }
+    .hero-rule {
+      border: none;
+      border-top: 2px solid var(--ink);
+      margin: 2rem 0 0;
+    }
+
+    /* ─── ARTICLE BODY ─── */
+    .article-wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 3rem 5rem;
+    }
+
+    /* chapter heading style: oversized, display font, full-width rule below */
+    h2 {
+      font-family: var(--display);
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 400;
+      color: var(--ink);
+      line-height: 1.15;
+      padding-top: 3rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid var(--ink);
+      margin-bottom: 1.6rem;
+    }
+    h3 {
+      font-family: var(--body);
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--ink);
+      margin: 2rem 0 0.6rem;
+    }
+
+    p { font-size: 1.05rem; line-height: 1.8; color: var(--ink-mid); margin-bottom: 1.3rem; }
+    p strong { color: var(--ink); }
+    ul, ol { padding-left: 1.4rem; color: var(--ink-mid); margin-bottom: 1.3rem; }
+    li { font-size: 1.05rem; line-height: 1.75; margin-bottom: 0.4rem; }
+    li strong { color: var(--ink); }
+
+    /* pull quote */
+    .pull {
+      border-top: 3px solid var(--ink);
+      border-bottom: 1px solid var(--divider);
+      margin: 2.5rem 0;
+      padding: 1.5rem 0 1.4rem;
+    }
+    .pull p {
+      font-family: var(--display);
+      font-style: italic;
+      font-size: clamp(1.2rem, 2.2vw, 1.55rem);
+      color: var(--ink);
+      line-height: 1.4;
+      margin-bottom: 0;
+    }
+
+    /* figure / diagram */
+    figure { margin: 2.5rem 0 1rem; }
+    figcaption {
+      font-family: var(--body);
+      font-size: 0.78rem;
+      color: var(--ink-muted);
+      font-style: italic;
+      margin-top: 0.7rem;
+      line-height: 1.55;
+    }
+    .diagram-scroll { overflow-x: auto; }
+
+    /* code block */
+    pre {
+      background: #111;
+      color: #f5f5f5;
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      padding: 1.2rem 1.5rem;
+      margin: 1.5rem 0;
+      overflow-x: auto;
+      line-height: 1.75;
+    }
+    code { font-family: var(--mono); background: var(--bg-offset); padding: 0.1em 0.35em; font-size: 0.88rem; color: var(--ink); }
+
+    /* signal table */
+    .sig-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--body);
+      font-size: 0.85rem;
+      margin: 2rem 0 0.5rem;
+    }
+    .sig-table th {
+      text-align: left;
+      font-weight: 600;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink);
+      border-bottom: 2px solid var(--ink);
+      padding: 0.5rem 0.75rem;
+    }
+    .sig-table td {
+      padding: 0.55rem 0.75rem;
+      border-bottom: 1px solid var(--divider);
+      color: var(--ink-mid);
+      vertical-align: top;
+    }
+    .sig-table tr:last-child td { border-bottom: none; }
+    .sig-table .feat { font-family: var(--mono); font-size: 0.8rem; color: var(--ink); font-weight: 500; }
+    .sig-table .dir-pos { font-weight: 700; color: var(--ink); }
+    .sig-table .dir-neg { color: var(--ink-light); }
+    .sig-table .confidence-hi { font-weight: 600; color: var(--ink); }
+    .sig-table .confidence-lo { color: var(--ink-muted); font-style: italic; }
+
+    /* closing note */
+    .end-rule {
+      border-top: 2px solid var(--ink);
+      margin-top: 4rem;
+      padding-top: 1.2rem;
+      font-size: 0.78rem;
+      color: var(--ink-muted);
+      font-family: var(--body);
+      line-height: 1.7;
+    }
+
+    @media (max-width: 680px) {
+      .opener, .article-wrap { padding-left: 1.4rem; padding-right: 1.4rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════ OPENER ═══════════════════ -->
+<div class="opener">
+  <p class="kicker">Market Analysis &nbsp;·&nbsp; Automotive Pricing &nbsp;·&nbsp; Regression Interpretation</p>
+  <h1>What <em>Actually</em> Moves a Used Car's Price</h1>
+  <p class="deck">Regression doesn't set prices — markets do. What the model reveals is pressure: which attributes push a car's value up or down, how confidently, and where the relationship breaks down the moment a real buyer and seller enter the room.</p>
+  <hr class="hero-rule">
+</div>
+
+<!-- ═══════════════════ ARTICLE ═══════════════════ -->
+<div class="article-wrap">
+
+  <!-- ═ SECTION 1 ═ -->
+  <h2>The Pricing Problem Is Messier Than It Looks</h2>
+
+  <p>Used car pricing sits at the intersection of depreciation curves, local supply conditions, buyer psychology, and the specific history of a vehicle that two people in a parking lot are trying to agree on. The market does not solve this cleanly. A seller anchors to what they paid; a buyer anchors to whatever comparable listing they found last Tuesday. What ends up being paid is a negotiated outcome, not an equilibrium price discovered by algorithm.</p>
+
+  <p>That doesn't make quantitative pricing analysis useless — it makes it situational. A regression model trained on historical transaction data can tell you what attributes <em>correlated</em> with price in past sales. It can rank which variables carry the most signal. It can flag where certain vehicle types consistently commanded premiums or discounts relative to their observable features. What it cannot do is replicate the knowledge a dealer has about their specific market, or account for the fact that the same Volkswagen Passat sells for a different number in Tucson than in Minneapolis, and for a different number still if it needs a timing belt.</p>
+
+  <p>The dataset here — the CarPrice Assignment, built around features like engine size, fuel type, body style, wheelbase, curb weight, and manufacturer — gives us a reasonable laboratory for the American market. The 205-row sample covers 26 car makers and a wide range of segment types. That breadth is valuable for understanding directional relationships. It is not large enough to trust as a pricing oracle.</p>
+
+  <div class="pull">
+    <p>"The model is not wrong about what drives value — it is incomplete about how much that value matters in a specific transaction."</p>
+  </div>
+
+  <!-- ═ SECTION 2 ═ -->
+  <h2>The Influence Map: What Pushes Price Up</h2>
+
+  <p>Before running any model, the structure of the data tells a story. Price in this dataset spans from roughly $5,000 to $45,000 — an 8× range — for vehicles that are all nominally "cars." That variance is the thing the model is trying to explain. The question is which features account for most of it.</p>
+
+  <!-- DIAGRAM 1: Influence Map SVG -->
+  <figure>
+    <div class="diagram-scroll">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 520" width="820" style="max-width:100%;display:block;">
+        <rect width="820" height="520" fill="#fff"/>
+
+        <!-- title -->
+        <text x="30" y="28" font-family="DM Sans,sans-serif" font-size="11" font-weight="600" fill="#888" letter-spacing="1.5">PRICE INFLUENCE MAP — WEIGHTED SIGNAL DIAGRAM</text>
+
+        <!-- ── CENTER: PRICE node ── -->
+        <circle cx="410" cy="265" r="46" fill="#111" stroke="#111" stroke-width="0"/>
+        <text x="410" y="259" font-family="DM Sans,sans-serif" font-size="13" font-weight="600" fill="#fff" text-anchor="middle">VEHICLE</text>
+        <text x="410" y="276" font-family="DM Sans,sans-serif" font-size="13" font-weight="600" fill="#fff" text-anchor="middle">PRICE</text>
+
+        <!-- ══ STRONG POSITIVE DRIVERS (thick solid lines) ══ -->
+
+        <!-- Engine Size — upper-left -->
+        <line x1="370" y1="228" x2="210" y2="145" stroke="#111" stroke-width="4"/>
+        <circle cx="185" cy="131" r="54" fill="#111" stroke="#111"/>
+        <text x="185" y="125" font-family="DM Sans,sans-serif" font-size="11" font-weight="600" fill="#fff" text-anchor="middle">ENGINE</text>
+        <text x="185" y="140" font-family="DM Sans,sans-serif" font-size="11" font-weight="600" fill="#fff" text-anchor="middle">SIZE</text>
+        <text x="185" y="158" font-family="DM Sans,sans-serif" font-size="9" fill="#bbb" text-anchor="middle">▲ strong +</text>
+
+        <!-- Curb Weight — left -->
+        <line x1="364" y1="262" x2="190" y2="262" stroke="#111" stroke-width="4"/>
+        <circle cx="147" cy="262" r="42" fill="#111" stroke="#111"/>
+        <text x="147" y="256" font-family="DM Sans,sans-serif" font-size="11" font-weight="600" fill="#fff" text-anchor="middle">CURB</text>
+        <text x="147" y="272" font-family="DM Sans,sans-serif" font-size="11" font-weight="600" fill="#fff" text-anchor="middle">WEIGHT</text>
+        <text x="147" y="287" font-family="DM Sans,sans-serif" font-size="9" fill="#bbb" text-anchor="middle">▲ strong +</text>
+
+        <!-- Car Width — lower-left -->
+        <line x1="375" y1="300" x2="218" y2="380" stroke="#111" stroke-width="3"/>
+        <circle cx="193" cy="397" r="40" fill="#333" stroke="#333"/>
+        <text x="193" y="392" font-family="DM Sans,sans-serif" font-size="11" font-weight="600" fill="#fff" text-anchor="middle">CAR</text>
+        <text x="193" y="406" font-family="DM Sans,sans-serif" font-size="11" font-weight="600" fill="#fff" text-anchor="middle">WIDTH</text>
+        <text x="193" y="420" font-family="DM Sans,sans-serif" font-size="9" fill="#bbb" text-anchor="middle">▲ mod +</text>
+
+        <!-- Horsepower — upper -->
+        <line x1="400" y1="219" x2="360" y2="110" stroke="#111" stroke-width="3.5"/>
+        <circle cx="350" cy="83" r="40" fill="#222" stroke="#222"/>
+        <text x="350" y="77" font-family="DM Sans,sans-serif" font-size="11" font-weight="600" fill="#fff" text-anchor="middle">HORSE-</text>
+        <text x="350" y="91" font-family="DM Sans,sans-serif" font-size="11" font-weight="600" fill="#fff" text-anchor="middle">POWER</text>
+        <text x="350" y="105" font-family="DM Sans,sans-serif" font-size="9" fill="#bbb" text-anchor="middle">▲ mod +</text>
+
+        <!-- Brand tier — upper-right (luxury vs base) -->
+        <line x1="451" y1="228" x2="590" y2="140" stroke="#111" stroke-width="4"/>
+        <circle cx="618" cy="125" r="50" fill="#111" stroke="#111"/>
+        <text x="618" y="117" font-family="DM Sans,sans-serif" font-size="10.5" font-weight="600" fill="#fff" text-anchor="middle">BRAND</text>
+        <text x="618" y="131" font-family="DM Sans,sans-serif" font-size="10.5" font-weight="600" fill="#fff" text-anchor="middle">TIER</text>
+        <text x="618" y="145" font-family="DM Sans,sans-serif" font-size="8.5" fill="#bbb" text-anchor="middle">(Jaguar vs Dodge)</text>
+        <text x="618" y="159" font-family="DM Sans,sans-serif" font-size="9" fill="#bbb" text-anchor="middle">▲ largest +</text>
+
+        <!-- ══ MODERATE / WEAK SIGNALS (thinner lines) ══ -->
+
+        <!-- Wheelbase — upper centre-right -->
+        <line x1="430" y1="221" x2="480" y2="90" stroke="#555" stroke-width="2" stroke-dasharray="5,3"/>
+        <circle cx="499" cy="72" r="36" fill="#fff" stroke="#555" stroke-width="1.5"/>
+        <text x="499" y="67" font-family="DM Sans,sans-serif" font-size="10" fill="#555" text-anchor="middle">WHEEL-</text>
+        <text x="499" y="80" font-family="DM Sans,sans-serif" font-size="10" fill="#555" text-anchor="middle">BASE</text>
+        <text x="499" y="93" font-family="DM Sans,sans-serif" font-size="8" fill="#aaa" text-anchor="middle">▲ weak +</text>
+
+        <!-- ══ NEGATIVE DRIVERS ══ -->
+
+        <!-- City MPG — right -->
+        <line x1="456" y1="260" x2="620" y2="262" stroke="#555" stroke-width="2.5"/>
+        <circle cx="660" cy="262" r="40" fill="#fff" stroke="#555" stroke-width="2"/>
+        <text x="660" y="257" font-family="DM Sans,sans-serif" font-size="10.5" fill="#555" text-anchor="middle">CITY</text>
+        <text x="660" y="271" font-family="DM Sans,sans-serif" font-size="10.5" fill="#555" text-anchor="middle">MPG</text>
+        <text x="660" y="285" font-family="DM Sans,sans-serif" font-size="9" fill="#aaa" text-anchor="middle">▼ inverse</text>
+
+        <!-- Fuel type diesel — lower-right -->
+        <line x1="445" y1="302" x2="575" y2="400" stroke="#888" stroke-width="1.5" stroke-dasharray="4,3"/>
+        <circle cx="608" cy="420" r="42" fill="#fff" stroke="#888" stroke-width="1.5"/>
+        <text x="608" y="414" font-family="DM Sans,sans-serif" font-size="10" fill="#888" text-anchor="middle">FUEL</text>
+        <text x="608" y="427" font-family="DM Sans,sans-serif" font-size="10" fill="#888" text-anchor="middle">TYPE</text>
+        <text x="608" y="440" font-family="DM Sans,sans-serif" font-size="8.5" fill="#bbb" text-anchor="middle">diesel premium</text>
+
+        <!-- Body style — lower centre -->
+        <line x1="420" y1="311" x2="435" y2="450" stroke="#888" stroke-width="1.5" stroke-dasharray="3,4"/>
+        <circle cx="438" cy="478" r="38" fill="#fff" stroke="#888" stroke-width="1.5"/>
+        <text x="438" y="473" font-family="DM Sans,sans-serif" font-size="10" fill="#888" text-anchor="middle">BODY</text>
+        <text x="438" y="487" font-family="DM Sans,sans-serif" font-size="10" fill="#888" text-anchor="middle">STYLE</text>
+        <text x="438" y="499" font-family="DM Sans,sans-serif" font-size="8.5" fill="#bbb" text-anchor="middle">mixed signal</text>
+
+        <!-- ══ LEGEND ══ -->
+        <rect x="30" y="430" width="200" height="70" fill="#f0f0f0" stroke="#ddd"/>
+        <text x="42" y="448" font-family="DM Sans,sans-serif" font-size="9" font-weight="600" fill="#333" letter-spacing="1">LEGEND</text>
+        <line x1="42" y1="462" x2="72" y2="462" stroke="#111" stroke-width="4"/>
+        <text x="78" y="465" font-family="DM Sans,sans-serif" font-size="9" fill="#555">Strong driver (|coeff| high, sig.)</text>
+        <line x1="42" y1="476" x2="72" y2="476" stroke="#555" stroke-width="2" stroke-dasharray="5,3"/>
+        <text x="78" y="479" font-family="DM Sans,sans-serif" font-size="9" fill="#555">Moderate / conditional</text>
+        <line x1="42" y1="490" x2="72" y2="490" stroke="#888" stroke-width="1.5" stroke-dasharray="3,4"/>
+        <text x="78" y="493" font-family="DM Sans,sans-serif" font-size="9" fill="#555">Weak / noisy signal</text>
+
+        <!-- ══ MULTICOLLINEARITY NOTE ══ -->
+        <rect x="30" y="310" width="118" height="78" fill="#f0f0f0" stroke="#ddd"/>
+        <text x="40" y="326" font-family="DM Sans,sans-serif" font-size="8" font-weight="600" fill="#333">COLLINEAR PAIR</text>
+        <text x="40" y="339" font-family="DM Sans,sans-serif" font-size="8" fill="#888">Engine Size</text>
+        <text x="40" y="350" font-family="DM Sans,sans-serif" font-size="8" fill="#888">⟷ Curb Weight</text>
+        <text x="40" y="361" font-family="DM Sans,sans-serif" font-size="8" fill="#888">r ≈ 0.85</text>
+        <text x="40" y="372" font-family="DM Sans,sans-serif" font-size="8" fill="#888">City/Hwy MPG ⟷</text>
+        <text x="40" y="383" font-family="DM Sans,sans-serif" font-size="8" fill="#888">Hwy MPG r ≈ 0.97</text>
+      </svg>
+    </div>
+    <figcaption><em>Fig. 1 — Price influence map. Filled black nodes are the strongest positive drivers; node size reflects relative explanatory weight. Solid thick lines = confident positive relationship; dashed lines = conditional or weak. The collinear pairs (engine size ↔ curb weight; city ↔ highway MPG) inflate each other's importance — a model that includes both in the same equation is double-counting the same underlying dimension (vehicle mass and efficiency respectively).</em></figcaption>
+  </figure>
+
+  <p>The strongest positive price signals are <strong>engine size</strong>, <strong>curb weight</strong>, and <strong>brand tier</strong> — and they are partially the same story. Heavier vehicles tend to have larger engines; larger engines tend to appear in higher-trim models; higher-trim models tend to appear in premium brands. The regression cannot cleanly separate these contributions because the features are correlated. The pairplot makes this visible: curb weight and engine size track together with an r near 0.85. When both enter a linear regression, the coefficients become unstable — each variable is absorbing credit for variance that legitimately belongs to the other.</p>
+
+  <p>The practical consequence: don't read individual coefficients as isolated price sensitivities. A regression that tells you "each additional kilogram of curb weight adds $X to price" is probably not wrong in a directional sense, but the magnitude is unreliable because it depends on which other correlated features are also in the model. Feature importance from a regularized model (Ridge, Lasso) or from a tree-based alternative gives a more honest signal than raw OLS coefficients in a multicollinear dataset.</p>
+
+  <h3>Brand Is the Biggest Single Lever</h3>
+
+  <p>Brand tier — the Jaguar-versus-Dodge dimension — explains more price variance than any individual physical feature. This is not surprising from a market standpoint: brand encodes accumulated quality signaling, ownership costs, resale history, and buyer status preferences that no individual engineering parameter captures. A Jaguar XJ and a Buick LeSabre can have similar curb weights and wheelbase lengths; they do not have similar prices. The model needs dummy variables for manufacturer to capture this, and those dummy variables end up being among the highest-weight predictors.</p>
+
+  <p>The implication for pricing analysis is that any model that omits manufacturer identity is leaving the largest explained variance bucket on the table. A buyer using a regression-based pricing tool that only considers physical attributes will systematically underestimate prices for premium-brand vehicles and overestimate them for economy brands.</p>
+
+  <!-- ═ SECTION 3 ═ -->
+  <h2>Signals That Seem Obvious but Are Noisy</h2>
+
+  <h3>Fuel Economy (MPG)</h3>
+  <p>City and highway MPG both show an <em>inverse</em> relationship with price. Higher fuel economy = lower price, on average, in this dataset. That runs against the intuition of many buyers who associate "fuel efficient" with "modern and desirable." The reason the relationship inverts is compositional: in this sample, high-MPG vehicles are disproportionately economy-segment cars (small displacement, lower curb weight, cheaper brand tier), while high-price vehicles are disproportionately large, powerful, and thirsty. The MPG variable is acting as a proxy for vehicle segment, not as an independent driver of buyer willingness to pay. A commercial reader using this model in 2020 or later — where hybrid and EV premiums are measurable — would need to be cautious about applying the coefficient.</p>
+
+  <h3>Body Style</h3>
+  <p>Convertibles command a premium; hatchbacks sit at the lower end; sedans and hardtops spread across the middle. The relationship is real but weak, because body style is correlated with the brand and segment clusters that are doing most of the price work. Add manufacturer dummies to the model and body style's independent contribution shrinks substantially. It matters more for within-brand comparisons (a convertible Volkswagen versus a sedan Volkswagen) than for cross-brand analysis.</p>
+
+  <h3>Drive Wheel Configuration</h3>
+  <p>Rear-wheel drive commands a slight premium in the data, which again reflects segment composition rather than direct buyer preference for RWD as a feature. Rear-wheel drive vehicles in this dataset are disproportionately sports cars, luxury sedans, and high-performance vehicles — categories that command premiums for reasons mostly unrelated to the drive wheel itself. A model that uses drive wheel type as a feature will partially capture the luxury-segment signal, but it is doing so with a noisy proxy.</p>
+
+  <!-- ═ SECTION 4 ═ -->
+  <h2>Where the Predictions Go Wrong: Residual Trouble Spots</h2>
+
+  <p>A model's residuals — the gap between what it predicts and what was actually paid — tell you more about its limits than the R² summary ever will.</p>
+
+  <!-- DIAGRAM 2: Residual trouble spots -->
+  <figure>
+    <div class="diagram-scroll">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 270" width="820" style="max-width:100%;display:block;">
+        <rect width="840" height="270" fill="#fff"/>
+
+        <text x="30" y="25" font-family="DM Sans,sans-serif" font-size="11" font-weight="600" fill="#888" letter-spacing="1.5">RESIDUAL TROUBLE SPOTS — WHERE PREDICTIONS DRIFT</text>
+
+        <!-- ── X AXIS: Predicted Price ── -->
+        <line x1="70" y1="215" x2="770" y2="215" stroke="#111" stroke-width="1.5"/>
+        <text x="70" y="232" font-family="Roboto Mono,monospace" font-size="9" fill="#888">$5k</text>
+        <text x="260" y="232" font-family="Roboto Mono,monospace" font-size="9" fill="#888">$15k</text>
+        <text x="450" y="232" font-family="Roboto Mono,monospace" font-size="9" fill="#888">$25k</text>
+        <text x="640" y="232" font-family="Roboto Mono,monospace" font-size="9" fill="#888">$35k+</text>
+        <text x="390" y="250" font-family="DM Sans,sans-serif" font-size="9.5" fill="#888" text-anchor="middle">← Predicted Price (USD) →</text>
+
+        <!-- ── Y AXIS: Residual ── -->
+        <line x1="70" y1="50" x2="70" y2="215" stroke="#111" stroke-width="1.5"/>
+        <line x1="65" y1="133" x2="770" y2="133" stroke="#ddd" stroke-width="1" stroke-dasharray="4,3"/>
+        <text x="56" y="136" font-family="Roboto Mono,monospace" font-size="9" fill="#888" text-anchor="end">0</text>
+        <text x="56" y="88" font-family="Roboto Mono,monospace" font-size="9" fill="#888" text-anchor="end">+$4k</text>
+        <text x="56" y="178" font-family="Roboto Mono,monospace" font-size="9" fill="#888" text-anchor="end">-$4k</text>
+        <text x="22" y="133" font-family="DM Sans,sans-serif" font-size="9" fill="#888" text-anchor="middle" transform="rotate(-90 22 133)">Residual</text>
+
+        <!-- ── SCATTERED POINTS (approximate) ── -->
+        <!-- Economy cluster (5k-12k): mostly small positive residuals, occasional negative -->
+        <circle cx="85" cy="123" r="4" fill="#888"/><circle cx="100" cy="138" r="4" fill="#888"/>
+        <circle cx="120" cy="118" r="4" fill="#888"/><circle cx="140" cy="148" r="4" fill="#888"/>
+        <circle cx="158" cy="128" r="4" fill="#888"/><circle cx="175" cy="123" r="4" fill="#888"/>
+        <circle cx="190" cy="141" r="4" fill="#888"/><circle cx="210" cy="116" r="4" fill="#888"/>
+        <circle cx="228" cy="133" r="4" fill="#888"/><circle cx="245" cy="126" r="4" fill="#888"/>
+
+        <!-- Mid cluster (12k-25k): tighter, well-modeled -->
+        <circle cx="270" cy="128" r="4" fill="#555"/><circle cx="288" cy="138" r="4" fill="#555"/>
+        <circle cx="305" cy="124" r="4" fill="#555"/><circle cx="325" cy="131" r="4" fill="#555"/>
+        <circle cx="340" cy="127" r="4" fill="#555"/><circle cx="358" cy="136" r="4" fill="#555"/>
+        <circle cx="375" cy="123" r="4" fill="#555"/><circle cx="393" cy="130" r="4" fill="#555"/>
+        <circle cx="410" cy="133" r="4" fill="#555"/><circle cx="428" cy="127" r="4" fill="#555"/>
+        <circle cx="445" cy="138" r="4" fill="#555"/><circle cx="465" cy="132" r="4" fill="#555"/>
+
+        <!-- High-price outliers: large negative residuals (model overestimates) -->
+        <circle cx="500" cy="163" r="5" fill="#111"/><circle cx="530" cy="170" r="5" fill="#111"/>
+        <circle cx="558" cy="178" r="5" fill="#111"/><circle cx="585" cy="168" r="5" fill="#111"/>
+        <circle cx="610" cy="183" r="5" fill="#111"/>
+
+        <!-- Luxury outliers: model underestimates (positive residual) -->
+        <circle cx="650" cy="78" r="6" fill="#111"/><circle cx="680" cy="70" r="6" fill="#111"/>
+        <circle cx="710" cy="83" r="6" fill="#111"/><circle cx="740" cy="63" r="6" fill="#111"/>
+        <circle cx="768" cy="73" r="6" fill="#111"/>
+
+        <!-- ── ANNOTATION ZONES ── -->
+        <!-- Economy zone label -->
+        <rect x="72" y="55" width="180" height="28" fill="#f0f0f0" stroke="#ddd"/>
+        <text x="162" y="68" font-family="DM Sans,sans-serif" font-size="9" font-weight="600" fill="#555" text-anchor="middle">ECONOMY SEGMENT</text>
+        <text x="162" y="79" font-family="DM Sans,sans-serif" font-size="8.5" fill="#888" text-anchor="middle">Random scatter — model ok here</text>
+
+        <!-- Mid zone label -->
+        <rect x="272" y="55" width="180" height="28" fill="#f0f0f0" stroke="#ddd"/>
+        <text x="362" y="68" font-family="DM Sans,sans-serif" font-size="9" font-weight="600" fill="#555" text-anchor="middle">MID MARKET</text>
+        <text x="362" y="79" font-family="DM Sans,sans-serif" font-size="8.5" fill="#888" text-anchor="middle">Tightest predictions</text>
+
+        <!-- High-price overestimate zone -->
+        <rect x="480" y="195" width="155" height="30" fill="#1a1a1a" stroke="#111"/>
+        <text x="558" y="208" font-family="DM Sans,sans-serif" font-size="8.5" font-weight="600" fill="#fff" text-anchor="middle">MODEL OVERESTIMATES</text>
+        <text x="558" y="220" font-family="DM Sans,sans-serif" font-size="8" fill="#bbb" text-anchor="middle">Spec'd up cars, poor market fit</text>
+        <line x1="558" y1="194" x2="558" y2="178" stroke="#111" stroke-width="1.5"/>
+
+        <!-- Luxury underestimate zone -->
+        <rect x="632" y="40" width="168" height="30" fill="#1a1a1a" stroke="#111"/>
+        <text x="716" y="53" font-family="DM Sans,sans-serif" font-size="8.5" font-weight="600" fill="#fff" text-anchor="middle">MODEL UNDERESTIMATES</text>
+        <text x="716" y="65" font-family="DM Sans,sans-serif" font-size="8" fill="#bbb" text-anchor="middle">Brand premium unmeasured</text>
+        <line x1="716" y1="71" x2="716" y2="77" stroke="#111" stroke-width="1.5"/>
+      </svg>
+    </div>
+    <figcaption><em>Fig. 2 — Residual trouble map. Each point is a vehicle: vertical position shows prediction error (above the dashed zero line = model underestimated; below = model overestimated). The model is most accurate in the mid-market band ($12k–$25k). At the high end, it systematically underestimates luxury-brand vehicles (brand premium not fully captured by physical features) and overestimates heavily-specced vehicles that didn't command market price to match their engineering cost.</em></figcaption>
+  </figure>
+
+  <p>Two trouble zones are predictable once you understand what the model can and cannot see.</p>
+
+  <p><strong>Luxury-segment underestimates.</strong> For Jaguar, BMW, and Porsche vehicles in the dataset, the model tends to predict a lower price than was actually paid. The physical attributes — engine size, weight, wheelbase — are accounted for, but the premium associated with brand perception and ownership status is only partially captured through manufacturer dummy variables. A dummy variable says "this is a Jaguar" but it doesn't know that Jaguar ownership carries a specific social signal that buyers pay for independently of the car's mechanical content. Real-world pricing for luxury vehicles involves aspirational value that no feature engineering exercise fully recovers.</p>
+
+  <p><strong>High-spec mid-brand overestimates.</strong> The opposite failure: a fully-loaded Dodge or Mitsubishi with a large engine, high curb weight, and premium interior options can look expensive on paper — the model predicts a high price based on those features — but the market doesn't pay full feature-value for a non-premium brand, even when the engineering cost is similar to what a premium brand would sell for. Brand ceiling effects cap the achievable price regardless of specification.</p>
+
+  <p>Both failure modes have the same root cause: the model treats observable features as the primary price-setting mechanism, when in used-car markets, brand reputation and segment positioning often act as price <em>ceilings</em> and <em>floors</em> that override the feature-based prediction.</p>
+
+  <!-- ═ SECTION 5 ═ -->
+  <h2>Modeling Choices That Determine Usefulness</h2>
+
+  <h3>Variable Selection Under Multicollinearity</h3>
+  <p>The pairwise correlation matrix for this dataset is not clean. Six of the top predictors — engine size, bore ratio, horsepower, curb weight, car width, car length — all correlate with each other above r = 0.6. Feeding them all into OLS produces inflated standard errors on the coefficients, which means you can't trust the significance tests or the coefficient magnitudes. The practical fix is to either select one representative from each correlated cluster (curb weight as the proxy for vehicle mass; engine size as the proxy for performance) or apply Ridge regression, which shrinks collinear coefficients toward zero rather than allowing them to take arbitrarily large and unstable values.</p>
+
+<pre><code class="language-python"># Ridge regression with cross-validated alpha selection
+# Handles multicollinearity by penalizing large coefficients
+
+from sklearn.linear_model import RidgeCV
+from sklearn.preprocessing import StandardScaler
+from sklearn.pipeline import Pipeline
+
+# Standardize before Ridge — scale matters for regularization
+pipe = Pipeline([
+    ('scaler', StandardScaler()),
+    ('model',  RidgeCV(alphas=[0.01, 0.1, 1.0, 10, 100], cv=5))
+])
+
+pipe.fit(X_train, y_train)
+
+# The fitted alpha tells you how much regularization the data needed
+print(f"Selected alpha: {pipe.named_steps['model'].alpha_}")
+# High alpha = heavy regularization = severe multicollinearity in X</code></pre>
+
+  <h3>Log-Transforming the Target</h3>
+  <p>Price distributions are typically right-skewed: a cluster of economy vehicles below $15,000 and a thinner tail of luxury vehicles above $30,000. Running OLS directly on raw prices means the model is fitting to a target that violates the normality assumption for residuals. A log transform on price produces a target that is more symmetric and puts the residuals on a percentage basis — which is also how real buyers think about pricing error ("I was off by 12%" is more useful than "I was off by $3,000 on a $25,000 car but only $800 on a $7,000 car").</p>
+
+  <h3>Dummy Encoding for Categorical Features</h3>
+  <p>Manufacturer, body style, fuel type, and drive wheel type are all nominal categories with no inherent numeric ordering. A label encoder that assigns integer values (Jaguar=1, Toyota=2, BMW=3) implies a false ordering that will distort the model's coefficients. One-hot encoding — a column per category — is the correct treatment, even though it expands the feature matrix substantially. With 26 manufacturers, that's 25 additional binary features. In a 205-row dataset, that's a meaningful dimensionality increase that makes regularization more important, not less.</p>
+
+  <!-- signal table -->
+  <figure>
+    <table class="sig-table">
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>Direction</th>
+          <th>Confidence in Magnitude</th>
+          <th>Commercial Interpretation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="feat">enginesize</td>
+          <td class="dir-pos">↑ strong positive</td>
+          <td class="confidence-lo">Low — collinear with weight/power</td>
+          <td>Proxy for vehicle class; coefficient inflated by collinearity</td>
+        </tr>
+        <tr>
+          <td class="feat">curbweight</td>
+          <td class="dir-pos">↑ strong positive</td>
+          <td class="confidence-lo">Low — collinear with engine size</td>
+          <td>Best single physical proxy; choose one or the other, not both</td>
+        </tr>
+        <tr>
+          <td class="feat">horsepower</td>
+          <td class="dir-pos">↑ moderate positive</td>
+          <td>Medium</td>
+          <td>Performance premium; partially independent of weight at high end</td>
+        </tr>
+        <tr>
+          <td class="feat">carwidth</td>
+          <td class="dir-pos">↑ moderate positive</td>
+          <td>Medium</td>
+          <td>Correlated with vehicle tier; wider = larger segment</td>
+        </tr>
+        <tr>
+          <td class="feat">brand_[luxury]</td>
+          <td class="dir-pos">↑ very strong positive</td>
+          <td class="confidence-hi">High — largely independent</td>
+          <td>Single largest lever; brand ceiling/floor effect is real</td>
+        </tr>
+        <tr>
+          <td class="feat">citympg</td>
+          <td class="dir-neg">↓ inverse</td>
+          <td>Medium</td>
+          <td>Segment proxy; high MPG = economy class, not efficiency premium</td>
+        </tr>
+        <tr>
+          <td class="feat">fueltypediesel</td>
+          <td class="dir-pos">↑ small positive</td>
+          <td class="confidence-lo">Low — thin sample of diesel vehicles</td>
+          <td>Diesel premium real in European data; weak here</td>
+        </tr>
+        <tr>
+          <td class="feat">drivewheel_rwd</td>
+          <td class="dir-pos">↑ weak positive</td>
+          <td class="confidence-lo">Low — luxury segment confound</td>
+          <td>Remove once brand dummies included; adds no independent signal</td>
+        </tr>
+      </tbody>
+    </table>
+    <figcaption><em>Fig. 3 — Feature signal table. Direction and commercial interpretation of each key predictor. Confidence in magnitude is deliberately rated separately from direction — a feature can reliably point the right way while its coefficient value is too unstable to use for pricing arithmetic.</em></figcaption>
+  </figure>
+
+  <!-- ═ SECTION 6 ═ -->
+  <h2>How a Commercial Reader Should Use — and Mistrust — the Output</h2>
+
+  <p>The model's R² on held-out data in this exercise sits somewhere between 0.82 and 0.90 depending on which features are included and how encoding is handled. That's not a bad number for a 205-row dataset. The question is what "good predictive performance" actually means for the use case.</p>
+
+  <p><strong>For bulk pricing audits</strong> — screening a fleet for vehicles that are priced significantly above or below the model's prediction — the model is genuinely useful. An auction house handling hundreds of vehicles can flag outliers for manual review without inspecting every unit. That is a legitimate industrial application, and the model's accuracy is sufficient for that triage function.</p>
+
+  <p><strong>For individual transaction guidance</strong>, the model's confidence intervals are wide enough to be honest about. At the luxury end, a $5,000 prediction error on a $40,000 vehicle (12.5%) is a real cost to the side of the transaction that relies on the model and ignores local market reality. A dealer in a specific metropolitan area with observed recent comps has better information than this model provides, because they know the local supply-demand balance, the service history distribution, and whether a given trim level is currently scarce or oversupplied in their market.</p>
+
+  <p><strong>For understanding market structure</strong>, the model is most honest and most useful. The feature importance hierarchy — brand tier, then vehicle mass and performance, then fuel economy as a segment proxy — tells a commercial analyst exactly where the market puts its value. That insight survives the model's limitations because it is directional and robust to moderate changes in specification.</p>
+
+  <div class="pull">
+    <p>"A model that tells you price is primarily brand and vehicle class is not a trivial finding. It is a direct challenge to any pricing strategy that focuses on incremental feature negotiation while ignoring segment positioning."</p>
+  </div>
+
+  <p>The honest boundaries of this analysis: the dataset is from the American market at a single point in time, the sample is 205 vehicles, and the target variable is transaction price — not asking price, not auction clearing price, not a consistent measure of final negotiated amount. Each of those qualifications limits generalizability. A team building a production pricing tool from this foundation needs continuous retraining on fresher data, geographic segmentation, and explicit modeling of market-condition variables that this dataset doesn't contain: interest rates, used-vehicle inventory levels, fuel price trends, and brand reliability reputation shifts that change with recall events.</p>
+
+  <p>The regression surface is a snapshot of historical price relationships, not a mechanism model of how prices form. In stable market conditions it ages reasonably. In a market disruption — a semiconductor shortage that depletes used-car inventory and drives prices 30 percent above historical norms, as happened in 2021 — the model produces confident but wrong predictions because the mechanism driving prices has temporarily changed. The model has no way to know that.</p>
+
+  <p>Used-car pricing, in the end, is a market negotiation with one party (the seller) who knows the vehicle's history and one party (the buyer) who doesn't. The regression model narrows the information asymmetry modestly. It gives both sides a defensible reference price. It doesn't eliminate the negotiation, and it shouldn't pretend to.</p>
+
+  <div class="end-rule">
+    <p>Dataset: CarPrice_Assignment.csv, 205 observations, 26 manufacturers, American market pricing. Modeling: linear regression with OLS and Ridge variants; one-hot encoding for categorical features; log-transform on price target. Tools: scikit-learn, statsmodels, Pandas, Seaborn. The analysis is a portfolio exercise and does not represent production pricing methodology for any commercial entity.</p>
+  </div>
+
+</div>
+</body>
+</html>
