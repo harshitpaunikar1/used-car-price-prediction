@@ -28,3 +28,7 @@
 
 - Task summary: Got stuck mid-afternoon and had to regroup — the test I wrote this morning had a hardcoded path, swapped it for a relative one.
 - Deliverable: Solid now, moving on.
+## 2021-07-01 - Day 3: Cleaning pass
+
+- Task summary: Spent another hour on this: pushed a config tweak after noticing the wrong default param was being used.
+- Deliverable: Minor but worth doing.
