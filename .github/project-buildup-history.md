@@ -24,3 +24,7 @@
 
 - Task summary: Circled back: the test I wrote this morning had a hardcoded path, swapped it for a relative one.
 - Deliverable: Cleaner than this morning's version.
+## 2021-07-01 - Day 3: Cleaning pass
+
+- Task summary: Got stuck mid-afternoon and had to regroup — the test I wrote this morning had a hardcoded path, swapped it for a relative one.
+- Deliverable: Solid now, moving on.
