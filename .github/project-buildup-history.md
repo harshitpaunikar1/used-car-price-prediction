@@ -20,3 +20,7 @@
 
 - Task summary: By this point I had the rough direction, so the work became more practical. I spent most of the day trying to plot the major signals and note which variables matter most and make the whole thing feel less half baked. Once the base made some sense, I could finally move a bit faster and stop second guessing every tiny decision. A lot of this also meant checking if the numbers were making sense and not just trusting the first result that showed up.
 - Deliverable: I wrapped up the day with eDA summary mostly in place. It was not perfect, but it was good enough to keep the project moving. It was not super polished, just stable enough that I felt okay moving forward.
+## 2021-07-05 - Day 5: Feature prep
+
+- Task summary: This was the middle stretch where the project started feeling real. I kept going and tried to choose the target and prepare the model input features, then cleaned up whatever looked confusing or weak from the earlier days. The middle part always takes longer than it should, mostly becuase one fix usually reveals two more things to clean up. I kept bouncing between the notebook, small observations, and quick plots until the direction felt usable.
+- Deliverable: Ended the day with feature set in hand, plus a few side notes on what still needed fixing later. I also left myself a few rough reminders for the next day so I would not have to rediscover the same context again.
