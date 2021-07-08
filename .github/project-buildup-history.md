@@ -56,3 +56,7 @@
 
 - Task summary: Closer to the end, I was mostly tightening things up instead of inventing new scope. The job for the day was to inspect metrics and error cases so the result is believable so the final result looked a bit more complete. Most of the heavy lifting was already done, so this part was more about making the rough edges less obvious. I kept bouncing between the notebook, small observations, and quick plots until the direction felt usable.
 - Deliverable: Ended the day with evaluation notes in hand, plus a few side notes on what still needed fixing later. I also left myself a few rough reminders for the next day so I would not have to rediscover the same context again.
+## 2021-07-08 - Day 8: Evaluation
+
+- Task summary: Got stuck mid-afternoon and had to regroup — fixed a type coercion issue that was causing silent NaN propagation downstream.
+- Deliverable: Cleaner than this morning's version.
