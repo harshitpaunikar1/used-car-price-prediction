@@ -60,3 +60,7 @@
 
 - Task summary: Got stuck mid-afternoon and had to regroup — fixed a type coercion issue that was causing silent NaN propagation downstream.
 - Deliverable: Cleaner than this morning's version.
+## 2021-07-09 - Day 9: Storytelling check
+
+- Task summary: Closer to the end, I was mostly tightening things up instead of inventing new scope. The job for the day was to translate the result into plain language for a non-technical reader so the final result looked a bit more complete. Toward the end I mostly kept trimming weird bits, fixing wording, and tying the loose parts together. Most of the progress here came from patient cleanup more than anything flashy.
+- Deliverable: Ended the day with business takeaway in hand, plus a few side notes on what still needed fixing later. There were still a couple of loose parts, but nothing serious enough to block the next step.
