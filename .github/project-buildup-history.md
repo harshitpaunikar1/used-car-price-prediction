@@ -72,3 +72,7 @@
 
 - Task summary: Got stuck mid-afternoon and had to regroup — updated the requirements file — had missed one indirect dependency.
 - Deliverable: Pushed before end of day.
+## 2021-07-09 - Day 9: Storytelling check
+
+- Task summary: Spent another hour on this: added inline comments in the dense sections — would have been confusing to revisit without them.
+- Deliverable: Good enough to not be embarrassing.
