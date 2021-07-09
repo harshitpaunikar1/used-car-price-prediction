@@ -64,3 +64,7 @@
 
 - Task summary: Closer to the end, I was mostly tightening things up instead of inventing new scope. The job for the day was to translate the result into plain language for a non-technical reader so the final result looked a bit more complete. Toward the end I mostly kept trimming weird bits, fixing wording, and tying the loose parts together. Most of the progress here came from patient cleanup more than anything flashy.
 - Deliverable: Ended the day with business takeaway in hand, plus a few side notes on what still needed fixing later. There were still a couple of loose parts, but nothing serious enough to block the next step.
+## 2021-07-09 - Day 9: Storytelling check
+
+- Task summary: Spent another hour on this: re-ran the plots with better axis labels and a more readable color palette.
+- Deliverable: Minor but worth doing.
