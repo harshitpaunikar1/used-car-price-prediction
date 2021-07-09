@@ -68,3 +68,7 @@
 
 - Task summary: Spent another hour on this: re-ran the plots with better axis labels and a more readable color palette.
 - Deliverable: Minor but worth doing.
+## 2021-07-09 - Day 9: Storytelling check
+
+- Task summary: Got stuck mid-afternoon and had to regroup — updated the requirements file — had missed one indirect dependency.
+- Deliverable: Pushed before end of day.
