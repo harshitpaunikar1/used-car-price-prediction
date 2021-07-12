@@ -76,3 +76,7 @@
 
 - Task summary: Spent another hour on this: added inline comments in the dense sections — would have been confusing to revisit without them.
 - Deliverable: Good enough to not be embarrassing.
+## 2021-07-12 - Day 10: Documentation wrap
+
+- Task summary: Used the last day on Used Car Price Prediction to slow down and finish the loose ends. I mainly had to clean the notebook and write a short README and make sure the project told a clean story from start to finish. I was not trying to add anything fancy here, just making sure the thing looked complete enough to show someone. A lot of this also meant checking if the numbers were making sense and not just trusting the first result that showed up.
+- Deliverable: Finished with project documentation looking decent enough to call this version done, even if I could still nitpick a few things. It was not super polished, just stable enough that I felt okay moving forward.
