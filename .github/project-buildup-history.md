@@ -12,3 +12,7 @@
 
 - Task summary: Added a data summary table to the notebook showing row count, null count, and dtype per column. Makes it easier to reference during feature engineering without re-running the audit.
 - Deliverable: Data summary table added. Quick reference for later stages.
+## 2022-08-15 - Day 2: Data collection and audit
+
+- Task summary: Found that the 'year' column had some entries that were clearly wrong (one was listed as year 1900). Flagged those as outliers and removed them. Added a data cleaning log cell to track all such removals.
+- Deliverable: Obvious year outliers removed. Cleaning log cell added for audit trail.
