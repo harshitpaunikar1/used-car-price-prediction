@@ -16,3 +16,7 @@
 
 - Task summary: Found that the 'year' column had some entries that were clearly wrong (one was listed as year 1900). Flagged those as outliers and removed them. Added a data cleaning log cell to track all such removals.
 - Deliverable: Obvious year outliers removed. Cleaning log cell added for audit trail.
+## 2022-08-22 - Day 3: EDA pass
+
+- Task summary: Went deep on the used car EDA today. Price distribution was heavily right-skewed so plotted on log scale. The most interesting relationship was between mileage and price — clearly non-linear with a steep drop in the first 20k miles and much flatter after that. Also looked at brand effects which were large: some brands retained value significantly better than others. The year of manufacture had a clean positive correlation with price. Started ranking which features would likely matter most going into modeling.
+- Deliverable: EDA complete. Non-linear mileage-price relationship identified. Brand effects documented.
