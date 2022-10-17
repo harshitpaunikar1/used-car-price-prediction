@@ -24,3 +24,7 @@
 
 - Task summary: Trained the main model for Used Car Price Prediction today. After trying linear regression, ridge, and a random forest, the random forest gave the best results with MAE around 9% of mean price which felt reasonable for used car pricing. The most important features were mileage, year, and engine size — which aligned with intuition. Spent part of the afternoon looking at residuals by brand to check if the model was systematically biased for any make.
 - Deliverable: RF model trained. MAE 9 percent of mean price. Feature importance aligns with intuition.
+## 2022-10-17 - Day 4: Model training
+
+- Task summary: Evening follow-up: added a prediction interval estimate using quantile regression alongside the point prediction. More honest for a use case like this where knowing the uncertainty range matters.
+- Deliverable: Quantile regression added for prediction intervals.
