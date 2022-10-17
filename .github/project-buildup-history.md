@@ -20,3 +20,7 @@
 
 - Task summary: Went deep on the used car EDA today. Price distribution was heavily right-skewed so plotted on log scale. The most interesting relationship was between mileage and price — clearly non-linear with a steep drop in the first 20k miles and much flatter after that. Also looked at brand effects which were large: some brands retained value significantly better than others. The year of manufacture had a clean positive correlation with price. Started ranking which features would likely matter most going into modeling.
 - Deliverable: EDA complete. Non-linear mileage-price relationship identified. Brand effects documented.
+## 2022-10-17 - Day 4: Model training
+
+- Task summary: Trained the main model for Used Car Price Prediction today. After trying linear regression, ridge, and a random forest, the random forest gave the best results with MAE around 9% of mean price which felt reasonable for used car pricing. The most important features were mileage, year, and engine size — which aligned with intuition. Spent part of the afternoon looking at residuals by brand to check if the model was systematically biased for any make.
+- Deliverable: RF model trained. MAE 9 percent of mean price. Feature importance aligns with intuition.
