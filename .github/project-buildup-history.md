@@ -28,3 +28,7 @@
 
 - Task summary: Evening follow-up: added a prediction interval estimate using quantile regression alongside the point prediction. More honest for a use case like this where knowing the uncertainty range matters.
 - Deliverable: Quantile regression added for prediction intervals.
+## 2022-11-21 - Day 5: Presentation and packaging
+
+- Task summary: Did the final packaging for Used Car Price Prediction today. Wrote the README explaining the problem, the approach, and how to run the prediction script. Also added a small CLI wrapper that takes car attributes as input and returns a predicted price with confidence interval. Tested the wrapper with a few examples to make sure the output formatting was sensible.
+- Deliverable: README written. CLI wrapper for predictions added and tested.
