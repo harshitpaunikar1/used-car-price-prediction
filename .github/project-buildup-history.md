@@ -32,3 +32,7 @@
 
 - Task summary: Did the final packaging for Used Car Price Prediction today. Wrote the README explaining the problem, the approach, and how to run the prediction script. Also added a small CLI wrapper that takes car attributes as input and returns a predicted price with confidence interval. Tested the wrapper with a few examples to make sure the output formatting was sensible.
 - Deliverable: README written. CLI wrapper for predictions added and tested.
+## 2022-11-21 - Day 5: Presentation and packaging
+
+- Task summary: The CLI wrapper was not handling missing optional arguments gracefully. Added default values for the less critical fields so it doesn't crash when they're omitted.
+- Deliverable: CLI wrapper now handles missing optional arguments with defaults.
