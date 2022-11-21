@@ -36,3 +36,7 @@
 
 - Task summary: The CLI wrapper was not handling missing optional arguments gracefully. Added default values for the less critical fields so it doesn't crash when they're omitted.
 - Deliverable: CLI wrapper now handles missing optional arguments with defaults.
+## 2022-11-21 - Day 5: Presentation and packaging
+
+- Task summary: Added a model version indicator to the output so it's clear which trained model generated a given prediction. Small thing but useful for reproducibility.
+- Deliverable: Model version indicator added to prediction output.
